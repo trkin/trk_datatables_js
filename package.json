@@ -1,0 +1,30 @@
+{
+  "name": "trk_datatables",
+  "version": "1.0.0",
+  "description": "Javascript package that works nicely with trk_datatables gem",
+  "main": "src/index.js",
+  "scripts": {
+    "_comment": "webpack --mode production",
+    "build": "webpack",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/trkin/trk_datatables_js.git"
+  },
+  "keywords": [
+    "datatables"
+  ],
+  "author": "Dusan Orlovic <duleorlovic@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/trkin/trk_datatables_js/issues"
+  },
+  "homepage": "https://github.com/trkin/trk_datatables_js#readme",
+  "devDependencies": {
+    "@babel/core": "^7.5.5",
+    "babel-loader": "^8.0.6",
+    "webpack": "^4.39.3",
+    "webpack-cli": "^3.3.7"
+  }
+}
