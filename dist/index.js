@@ -91,23 +91,21 @@ module.exports =
 /*!**********************!*\
   !*** ./src/index.js ***!
   \**********************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _load__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./load */ \"./src/load.js\");\n\n\nconst initialise = () => Object(_load__WEBPACK_IMPORTED_MODULE_0__[\"default\"])([1, 2]);\n\n/* harmony default export */ __webpack_exports__[\"default\"] = ({\n  initialise: initialise\n});\n\n//# sourceURL=webpack:///./src/index.js?");
+eval("const sum = __webpack_require__(/*! ./sum */ \"./src/sum.js\");\n\nconst initialise = () => sum([1, 4]);\n\nmodule.exports = {\n  initialise\n};\n\n//# sourceURL=webpack:///./src/index.js?");
 
 /***/ }),
 
-/***/ "./src/load.js":
-/*!*********************!*\
-  !*** ./src/load.js ***!
-  \*********************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ "./src/sum.js":
+/*!********************!*\
+  !*** ./src/sum.js ***!
+  \********************/
+/*! no static exports found */
+/***/ (function(module, exports) {
 
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\nconst load = a => a.reduce((sum, current) => sum + current, 0);\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (load);\n\n//# sourceURL=webpack:///./src/load.js?");
+eval("const load = a => a.reduce((sum, current) => sum + current, 0);\n\nmodule.exports = load;\n\n//# sourceURL=webpack:///./src/sum.js?");
 
 /***/ })
 

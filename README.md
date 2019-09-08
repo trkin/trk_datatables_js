@@ -9,7 +9,6 @@ and works with [trk_datatables gem](https://datatables.net)
 yarn add trk_datatables
 ```
 
-
 Add to your page load or turbolinks load if you are using Rails and webpacker
 
 ```
@@ -20,4 +19,25 @@ document.addEventListener('turbolinks:load', () => {
   // this will initialise all data-datatables elements
   trkDatatables.initialise()
 })
+```
+
+## Development
+
+```
+# in package folder
+yarn link
+
+# in usage folder
+yarn link trk_datatables
+```
+
+To run test you can
+```
+yarn run test
+```
+
+## Deploy
+
+```
+npm publish
 ```
