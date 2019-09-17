@@ -1,0 +1,38 @@
+// @media (min-width: $screen-sm)
+//   .move-up
+//     // move up to align with pagination
+//     margin-top: -50px
+//     position: relative
+
+//     // do not overlap pagination buttons
+//     width: 30%
+
+div.dataTables_wrapper div.dataTables_processing
+  top: 126px
+
+div.dataTables_wrapper div.dataTables_paginate
+  margin-top: 5px
+
+.column-search-icon
+  float: right
+  position: absolute
+  right: 20px
+  top: 15px
+  display: block
+
+  .fa-search-plus
+    display: none
+
+.search-wrapper label:hover .column-search-icon .fa-search-plus
+  display: block
+
+.column-search
+  width: 100%
+  display: block
+
+.column-search.column-search__small
+  // this is for ID column
+  width: 35px
+
+[data-datatable-hidden-column]
+  display: none

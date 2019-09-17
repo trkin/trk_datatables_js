@@ -1,13 +1,18 @@
 {
   "name": "trk_datatables",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Javascript package that works nicely with trk_datatables gem",
   "_main_comment": "src/index.js for webpacker",
-  "main": "dist/index.js",
+  "main": "src/index.js",
   "scripts": {
     "_build_comment": "webpack --mode production",
     "build": "webpack",
     "test": "jest"
+  },
+  "jest": {
+    "moduleNameMapper": {
+      "\\.(scss|sass|css)$": "<rootDir>/__mocks__/styleMock.js"
+    }
   },
   "repository": {
     "type": "git",
@@ -25,11 +30,17 @@
   "devDependencies": {
     "@babel/core": "^7.5.5",
     "babel-loader": "^8.0.6",
-    "datatables.net-dt": "^1.10.19",
+    "css-loader": "^3.2.0",
     "jasmine-core": "^3.4.0",
     "jest": "^24.9.0",
+    "node-sass": "^4.12.0",
+    "sass-loader": "^8.0.0",
+    "style-loader": "^1.0.0",
     "webpack": "^4.39.3",
     "webpack-cli": "^3.3.7"
   },
-  "dependencies": {}
+  "dependencies": {
+    "datatables.net": "^1.10.19",
+    "datatables.net-bs4": "^1.10.19"
+  }
 }
