@@ -80,6 +80,7 @@ gnome-open fontello/demo.html
 
 ## Deploy
 
+Release new version by updating `version` in package.json and
 ```
 npm publish
 ```
