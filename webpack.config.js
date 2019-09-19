@@ -6,7 +6,8 @@ module.exports = {
   output: {
     path: path.resolve('dist'),
     filename: 'index.js',
-    libraryTarget: 'commonjs2',
+    library: 'trkDatatables',
+    libraryTarget: 'umd',
   },
   module: {
     rules: [
@@ -14,6 +15,9 @@ module.exports = {
         test: /\.js?$/,
         exclude: /(node_modules)/,
         use: 'babel-loader',
+      },
+      {
+        parser: { amd: false },
       },
       {
         test: /\.(scss|sass|css)$/i,
@@ -25,7 +29,13 @@ module.exports = {
           // Compiles Sass to CSS
           'sass-loader',
         ]
-      }
+      },
+      {
+         test: /\.(woff|woff2|eot|ttf|otf|png|svg|jpg|gif)$/,
+         use: [
+           'file-loader'
+         ]
+      },
     ],
   },
   resolve: {

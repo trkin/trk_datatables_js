@@ -13,24 +13,22 @@ div.dataTables_wrapper div.dataTables_processing
 div.dataTables_wrapper div.dataTables_paginate
   margin-top: 5px
 
-.column-search-icon
+// toggle search icons
+.trk-global-search-wrapper label
+  position: relative
+
+.trk-global-search-icon-wrapper
   float: right
   position: absolute
-  right: 20px
-  top: 15px
+  right: 5px
+  top: 5px
   display: block
 
-  .fa-search-plus
-    display: none
-
-.search-wrapper label:hover .column-search-icon .fa-search-plus
-  display: block
-
-.column-search
+.trk-column-search
   width: 100%
   display: block
 
-.column-search.column-search__small
+.trk-column-search.trk-column-search__small
   // this is for ID column
   width: 35px
 

@@ -35,21 +35,34 @@
   require('datatables.net-bs4')(window, $)
   require('datatables.net-bs4/css/dataTables.bootstrap4.css')
   require('./index.sass')
+  require('../fontello/css/fontello.css')
 
-  const columnSearchInputs = require('./column_search_inputs')
+  const addColumnSearchInputs = require('./addColumnSearchInputs')(window, $)
+  const addEventListeners = require('./addEventListeners')
 
   const initialise = () => {
     $('[data-datatable]').each(function(){
-      let $table = $(this)
-      let options = findOptions($table)
-      columnSearchInputs($table)
-      $table.DataTable().destroy()
-      $table.DataTable(options)
+      initialiseOne($(this))
     })
   }
 
+  const initialiseOne = ($table, isColumnSearch = undefined) => {
+    // we we toggle collumnsearch we need to destroy before addColumnSearchInputs
+    $table.DataTable().destroy()
+    let options = findOptions($table)
+    if (isColumnSearch === undefined) isColumnSearch = $('[data-datatable-search-value][data-datatable-search-value!=""]', $table).length
+    if (isColumnSearch) {
+      addColumnSearchInputs($table)
+    } else {
+      addLabels($table)
+    }
+    let datatable = $table.DataTable(options)
+    if (isColumnSearch) addEventListeners(datatable, options)
+    addIconGlobalSearch($table, isColumnSearch)
+  }
+
   function findOptions($table) {
-    let dom = $table.data('datatableDom') || "TODO: <defualt>";
+    let dom = $table.data('datatableDom') || '<"trk-global-search-wrapper"f>rtp<"move-up"il>'
     let order = $table.data('datatableOrder') || [[0, 'desc']]
     let pageLength = $table.data('datatablePageLength') || 10
     let options = {
@@ -57,38 +70,70 @@
       scrollX: true,
       scrollCollapse: true,
       autoWidth: false,
-      // dom: dom,
+      dom: dom,
       order: order,
       pageLength: pageLength,
       destroy: true, // this is needed when we enable/disable column search
     }
-    let ajaxOptions = {}
+    let optionsAjax = {}
     if ($table.data('datatableAjaxUrl')) {
       let ajaxUrl = $table.data('datatableAjaxUrl')
       let totalLength = $table.data('datatableTotalLength')
-      ajaxOptions = {
+      optionsAjax = {
         searchDelay: 500,
         processing: true,
         oLanguage: {
-          sProcessing: '<i class="fa fa-spinner fa-spin" \
+          sProcessing: '<i class="demo-icon icon-spinner fa-spin" \
           style="font-size:24px"></i> Processing...',
-          serverSide: true,
-          ajax: {
-            url: ajaxUrl,
-            type: 'POST',
-            error: (xhr, message, error) => {
-              msg = `Please refresh the page. ${error}.`
-              if (typeof xhr != 'undefined' && typeof xhr.responseJSON != 'undefined') {
-                msg += ` ${xhr.responseJSON['error']}`
-              }
-              flash_alert(msg)
-            },
-            deferLoading: totalLength,
-          }
+        },
+        serverSide: true,
+        ajax: {
+          url: ajaxUrl,
+          type: 'POST',
+          error: (xhr, message, error) => {
+            let msg = `Please refresh the page. ${error}.`
+            if (typeof xhr != 'undefined' && typeof xhr.responseJSON != 'undefined') {
+              msg += ` ${xhr.responseJSON['error']}`
+            }
+            flash_alert(msg)
+          },
+          deferLoading: totalLength,
         }
       }
     }
-    return { ...options, ...ajaxOptions }
+    let optionsColumnDefs = {}
+    $('thead th', $table).each(function(index) {
+      if ($(this).data('datatableHiddenColumn')) {
+        if (!optionsColumnDefs["columnDefs"]) optionsColumnDefs["columnDefs"] = [{"targets": [], visible: false}]
+        optionsColumnDefs["columnDefs"][0]['targets'].push(index)
+      }
+    })
+
+    return { ...options, ...optionsAjax, ...optionsColumnDefs }
+  }
+
+  function addLabels($table) {
+    $('thead th', $table).each(function() {
+      let original_text = $(this).data('original-text')
+      if (original_text)
+        $(this).html(original_text)
+    })
+  }
+
+  function addIconGlobalSearch($table, isColumnSearch) {
+    let icon = isColumnSearch ? 'trk-icon-table' : 'trk-icon-grid'
+    $('.trk-global-search-wrapper label').append(`<div class='trk-global-search-icon-wrapper'><i class='demo-icon ${icon}' aria-hidden='true'></i></div>`)
+    $('.trk-global-search-icon-wrapper').click(function() {
+      if (isColumnSearch) {
+        initialiseOne($table, false)
+      } else {
+        initialiseOne($table, true)
+      }
+    })
+  }
+
+  function flash_alert(msg) {
+    alert(msg)
   }
 
   return {
