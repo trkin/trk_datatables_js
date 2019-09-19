@@ -1,0 +1,49 @@
+<html>
+  <head>
+    <!-- jquery -->
+    <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+
+    <!-- https://datatables.net/download/ -->
+    <!-- bs4 -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.css"/>
+    <!-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.18/css/dataTables.bootstrap4.css"/> -->
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/js/bootstrap.js"></script>
+
+    <!-- datatables -->
+    <!-- <script type="text/javascript" src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.js"></script> -->
+    <!-- <script type="text/javascript" src="https://cdn.datatables.net/1.10.18/js/dataTables.bootstrap4.js"></script> -->
+
+
+    <script type="text/javascript" src="./../../dist/index.js"></script>
+    <!-- local copy -->
+    <!-- <script type="text/javascript" src="./jquery.dataTables.js"></script> -->
+
+  </head>
+  <body>
+    <table data-datatable='true' id='myTable'>
+      <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>1</td>
+        <td>MyName</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>YourName</td>
+      </tr>
+      </tbody>
+    </table>
+    <script>
+      trkDatatables(window, $).initialise()
+      <!-- $(document).ready( function () { -->
+      <!--     $('#myTable').DataTable(); -->
+      <!-- } ); -->
+    </script>
+  </body>
+</html>

@@ -1,0 +1,4 @@
+
+.trk-icon-grid:before { content: '\e800'; } /* '' */
+.trk-icon-table:before { content: '\f0ce'; } /* '' */
+.trk-icon-spinner:before { content: '\f110'; } /* '' */
