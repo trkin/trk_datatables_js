@@ -25,9 +25,10 @@
 }(function( $, window, document, undefined ) { // eslint-disable-line
   "use strict";
 
-  // let moment = require('moment')()
-  // require('daterangepicker')(moment, $)
-  require('./vendor/daterangepicker')(undefined, $)
+  let moment = require('moment')
+  // use from vendor untill pull request is accepted
+  // https://github.com/dangrossman/daterangepicker/pull/2026
+  require('./vendor/daterangepicker')(moment, $)
   require('daterangepicker/daterangepicker.css')
 
   const addDateRangePicker = function($input) {
