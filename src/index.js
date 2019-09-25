@@ -26,15 +26,14 @@
     // Browser
     factory( jQuery, window, document );
   }
-}
-(function( $, window, document, undefined ) {
+}(function( $, window, document, undefined ) { // eslint-disable-line
   "use strict";
 
   // TODO: maybe we should move this require to iife
   require('datatables.net')(window, $)
   require('datatables.net-bs4')(window, $)
   require('datatables.net-bs4/css/dataTables.bootstrap4.css')
-  require('./index.sass')
+  require('./main.sass')
   require('../fontello/css/fontello.css')
 
   const addColumnSearchInputs = require('./addColumnSearchInputs')(window, $)
@@ -47,7 +46,7 @@
   }
 
   const initialiseOne = ($table, isColumnSearch = undefined) => {
-    // we we toggle collumnsearch we need to destroy before addColumnSearchInputs
+    // when we toggle collumnsearch we need to destroy before addColumnSearchInputs
     $table.DataTable().destroy()
     let options = findOptions($table)
     if (isColumnSearch === undefined) isColumnSearch = $('[data-datatable-search-value][data-datatable-search-value!=""]', $table).length
@@ -62,7 +61,7 @@
   }
 
   function findOptions($table) {
-    let dom = $table.data('datatableDom') || '<"trk-global-search-wrapper"f>rtp<"move-up"il>'
+    let dom = $table.data('datatableDom') || '<"trk-global-search-wrapper"f>rtp<"trk-move-up"il>'
     let order = $table.data('datatableOrder') || [[0, 'desc']]
     let pageLength = $table.data('datatablePageLength') || 10
     let options = {
@@ -87,18 +86,18 @@
           style="font-size:24px"></i> Processing...',
         },
         serverSide: true,
+        deferLoading: totalLength,
         ajax: {
           url: ajaxUrl,
           type: 'POST',
           error: (xhr, message, error) => {
-            let msg = `Please refresh the page. ${error}.`
+            let msg = `Ajax error. Please refresh the page. ${error}.`
             if (typeof xhr != 'undefined' && typeof xhr.responseJSON != 'undefined') {
               msg += ` ${xhr.responseJSON['error']}`
             }
             flash_alert(msg)
           },
-          deferLoading: totalLength,
-        }
+        },
       }
     }
     let optionsColumnDefs = {}
@@ -122,7 +121,7 @@
 
   function addIconGlobalSearch($table, isColumnSearch) {
     let icon = isColumnSearch ? 'trk-icon-table' : 'trk-icon-grid'
-    $('.trk-global-search-wrapper label').append(`<div class='trk-global-search-icon-wrapper'><i class='demo-icon ${icon}' aria-hidden='true'></i></div>`)
+    $('.trk-global-search-wrapper label').append(`<div class='trk-global-search-icon-wrapper'><button class='trk-global-search-button'><i class='demo-icon ${icon}' aria-hidden='true'></i></button></div>`)
     $('.trk-global-search-icon-wrapper').click(function() {
       if (isColumnSearch) {
         initialiseOne($table, false)

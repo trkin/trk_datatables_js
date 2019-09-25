@@ -9,6 +9,9 @@ module.exports = {
     library: 'trkDatatables',
     libraryTarget: 'umd',
   },
+  devServer: {
+    contentBase: './dist',
+  },
   module: {
     rules: [
       {

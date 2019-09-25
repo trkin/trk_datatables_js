@@ -22,13 +22,11 @@
     // Browser
     factory( jQuery, window, document );
   }
-}
-(function( $, window, document, undefined ) {
+}(function( $, window, document, undefined ) { // eslint-disable-line
   "use strict";
-  // TODO: check if multiple require add some problems
-  // since we do not pass $ from index.js
-  // https://stackoverflow.com/questions/30038680/requiring-same-module-in-multiple-files
-  const add = ($table) => {
+
+  const addDateRangePicker = require('./addDateRangePicker')(window, $)
+  const addColumnSearchInputs = ($table) => {
     $('thead th[data-searchable!="false"]', $table).each(function() {
       let $th = $(this)
       if ($table.data('datatableMultiselect')) {
@@ -36,7 +34,7 @@
       } else {
         addInputBasedOnText($th)
         if ($(this).data('datatableRange')) {
-          addRange($th)
+          addDateRange($th)
         }
       }
     })
@@ -65,9 +63,9 @@
 
     let klass = ''
     if (text == 'ID') {
-      klass = 'trk-column-search__small'
+      klass = 'trk-column-input__small'
     }
-    $th.html(`<input class='trk-column-search ${klass}' type='text' placeholder='${text}' />`)
+    $th.html(`<input class='trk-column-input ${klass}' type='text' placeholder='${text}' />`)
     $th.data("original-text", text)
     $('input', $th).on('click', (e) => {
       e.stopPropagation() // prevent reordering since it is on thead
@@ -78,11 +76,11 @@
   }
 
 
-  function addRange($th) {
+  function addDateRange($th) {
     let $input = $('input', $th)
     $input.data('dateRange', $(this).data('datatableRange'))
     $input.data('predefinedRanges', $(this).data('datatablePredefinedRanges'))
     addDateRangePicker($input)
   }
-  return add
+  return addColumnSearchInputs
 }))

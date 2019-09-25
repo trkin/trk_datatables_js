@@ -1,11 +1,11 @@
-// @media (min-width: $screen-sm)
-//   .move-up
-//     // move up to align with pagination
-//     margin-top: -50px
-//     position: relative
+@media (min-width: 576px)
+  .trk-move-up
+    // move up to align with pagination
+    margin-top: -50px
+    position: relative
 
-//     // do not overlap pagination buttons
-//     width: 30%
+    // do not overlap pagination buttons
+    width: 30%
 
 div.dataTables_wrapper div.dataTables_processing
   top: 126px
@@ -24,11 +24,16 @@ div.dataTables_wrapper div.dataTables_paginate
   top: 5px
   display: block
 
+.trk-global-search-button
+  border: none
+  background: none
+
+// column inputs
 .trk-column-search
   width: 100%
   display: block
 
-.trk-column-search.trk-column-search__small
+.trk-column-input.trk-column-input__small
   // this is for ID column
   width: 35px
 

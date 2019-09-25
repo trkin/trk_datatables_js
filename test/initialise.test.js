@@ -3,7 +3,6 @@ const trkDatatables = require('../src/index.js')(window, $)
 
 test('initialise', () => {
   document.body.innerHTML = `
-  <div id='m'>a</div>
     <table data-datatable='true' id='myTable'>
       <thead>
         <tr>

@@ -23,23 +23,26 @@
   <body>
     <a href='/'>Back to root</a>
     <div class='container'>
-      <h1>Trk Datatable Client Side</h1>
-      <table class='table table-bordered table-striped ' data-datatable='true' data-datatable-page-length='10' data-datatable-order='[[0,&quot;desc&quot;]]'>
+      <h1>Trk Datatable Server Side</h1>
+      <table class='table table-bordered table-striped ' data-datatable='true' data-datatable-ajax-url='http://localhost:3004/clubs/search.json' data-datatable-page-length='10' data-datatable-order='[[0,&quot;desc&quot;]]' data-datatable-total-length='2'>
         <thead>
           <tr>
             <th>ID</th>
+            <th>Venue</th>
             <th>Name</th>
-            <th>Date</th>
+            <th data-datatable-search-value='2020-01-02 - 2020-01-03' data-datatable-range='true'>Date</th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <td>1</td>
             <td>MyName</td>
+            <td>MyName</td>
             <td>2020-01-02</td>
           </tr>
           <tr>
             <td>2</td>
+            <td>YourName</td>
             <td>YourName</td>
             <td>2020-01-03</td>
           </tr>

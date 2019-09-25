@@ -1,4 +1,4 @@
-const add = (datatable) => {
+const addEventListeners = (datatable) => {
   let ajaxUrl = datatable.ajax.url()
   datatable.columns().every(function() {
     let column = this
@@ -43,4 +43,4 @@ const add = (datatable) => {
   })
 }
 
-module.exports = add
+module.exports = addEventListeners

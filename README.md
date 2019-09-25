@@ -38,6 +38,24 @@ generate `dist/index.js`.
 
 ## Development
 
+To run test you can
+```
+# run all test files
+yarn test
+
+# run single
+node node_modules/.bin/jest --runInBand test/initialise.test.js
+```
+
+You can open sample with
+```
+yarn start
+# open examples in dist
+gnome-open http://localhost:8081/dist/client_side.html
+gnome-open http://localhost:8081/dist/server_side.html
+```
+
+To test on a project
 ```
 # in package folder
 yarn link
@@ -46,16 +64,6 @@ yarn link
 # eventual remove from package and node_modules
 yarn remove trk_datatables
 yarn link trk_datatables
-```
-
-To run test you can
-```
-yarn run test
-```
-
-You can open sample with
-```
-gnome-open test/support/table.html
 ```
 
 For icons we used http://fontello.com/ `npm install fontello-cli -g` and open a

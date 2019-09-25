@@ -1,12 +1,14 @@
 {
   "name": "trk_datatables",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Javascript package that works nicely with trk_datatables gem",
   "_main_comment": "src/index.js for webpacker",
   "main": "src/index.js",
   "scripts": {
     "_build_comment": "webpack --mode production",
     "build": "webpack",
+    "watch": "webpack --watch",
+    "start": "webpack-dev-server --open",
     "test": "jest"
   },
   "jest": {
@@ -31,6 +33,7 @@
     "@babel/core": "^7.5.5",
     "babel-loader": "^8.0.6",
     "css-loader": "^3.2.0",
+    "eslint": "^6.4.0",
     "file-loader": "^4.2.0",
     "jasmine-core": "^3.4.0",
     "jest": "^24.9.0",
@@ -38,10 +41,12 @@
     "sass-loader": "^8.0.0",
     "style-loader": "^1.0.0",
     "webpack": "^4.39.3",
-    "webpack-cli": "^3.3.7"
+    "webpack-cli": "^3.3.7",
+    "webpack-dev-server": "^3.8.1"
   },
   "dependencies": {
     "datatables.net": "^1.10.19",
-    "datatables.net-bs4": "^1.10.19"
+    "datatables.net-bs4": "^1.10.19",
+    "daterangepicker": "^3.0.5"
   }
 }
