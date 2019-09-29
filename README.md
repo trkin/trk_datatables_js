@@ -21,6 +21,13 @@ document.addEventListener('turbolinks:load', () => {
 })
 ```
 
+Also you need to include styles from js
+
+```
+// app/views/layouts/application.html.erb
+    <%= stylesheet_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+```
+
 ## Instalattion with script tag
 
 Look for example `test/support/server_side.html` and run `yarn build` to
@@ -55,7 +62,7 @@ gnome-open http://localhost:8081/dist/client_side.html
 gnome-open http://localhost:8081/dist/server_side.html
 ```
 
-To test on a project
+To test on a project localy
 ```
 # in package folder
 yarn link
@@ -64,6 +71,10 @@ yarn link
 # eventual remove from package and node_modules
 yarn remove trk_datatables
 yarn link trk_datatables
+
+# when you are done, you should use npm version, not local
+yarn unlink trk_datatables
+yarn add trk_datatables
 ```
 
 For icons we used http://fontello.com/ `npm install fontello-cli -g` and open a

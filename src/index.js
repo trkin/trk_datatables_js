@@ -39,28 +39,29 @@
   const addColumnSearchInputs = require('./addColumnSearchInputs')(window, $)
   const addEventListeners = require('./addEventListeners')
 
-  const initialise = () => {
+  const initialise = (passedOptions = {}) => {
     $('[data-datatable]').each(function(){
-      initialiseOne($(this))
+      initialiseOne($(this), { passedOptions: passedOptions } )
     })
   }
 
-  const initialiseOne = ($table, isColumnSearch = undefined) => {
+  const initialiseOne = ($table, { isColumnSearch = undefined, passedOptions = {} }) => {
     // when we toggle collumnsearch we need to destroy before addColumnSearchInputs
     $table.DataTable().destroy()
-    let options = findOptions($table)
+    let options = findOptions($table, passedOptions)
     if (isColumnSearch === undefined) isColumnSearch = $('[data-datatable-search-value][data-datatable-search-value!=""]', $table).length
     if (isColumnSearch) {
       addColumnSearchInputs($table)
     } else {
       addLabels($table)
     }
+    // here we actually initialise Datatable
     let datatable = $table.DataTable(options)
     if (isColumnSearch) addEventListeners(datatable, options)
-    addIconGlobalSearch($table, isColumnSearch)
+    addIconGlobalSearch($table, isColumnSearch, passedOptions)
   }
 
-  function findOptions($table) {
+  function findOptions($table, passedOptions) {
     let dom = $table.data('datatableDom') || '<"trk-global-search-wrapper"f>rtp<"trk-move-up"il>'
     let order = $table.data('datatableOrder') || [[0, 'desc']]
     let pageLength = $table.data('datatablePageLength') || 10
@@ -81,10 +82,6 @@
       optionsAjax = {
         searchDelay: 500,
         processing: true,
-        oLanguage: {
-          sProcessing: '<i class="demo-icon icon-spinner fa-spin" \
-          style="font-size:24px"></i> Processing...',
-        },
         serverSide: true,
         deferLoading: totalLength,
         ajax: {
@@ -108,7 +105,17 @@
       }
     })
 
-    return { ...options, ...optionsAjax, ...optionsColumnDefs }
+    return {
+      ...options,
+      ...optionsAjax,
+      ...optionsColumnDefs,
+      ...passedOptions,
+      language: {
+        processing: `<i class="demo-icon icon-spinner fa-spin"
+            style="font-size:24px"></i> Processing... spiner`,
+        ...passedOptions.language,
+        },
+    }
   }
 
   function addLabels($table) {
@@ -119,14 +126,14 @@
     })
   }
 
-  function addIconGlobalSearch($table, isColumnSearch) {
+  function addIconGlobalSearch($table, isColumnSearch, passedOptions) {
     let icon = isColumnSearch ? 'trk-icon-table' : 'trk-icon-grid'
     $('.trk-global-search-wrapper label').append(`<div class='trk-global-search-icon-wrapper'><button class='trk-global-search-button'><i class='demo-icon ${icon}' aria-hidden='true'></i></button></div>`)
     $('.trk-global-search-icon-wrapper').click(function() {
       if (isColumnSearch) {
-        initialiseOne($table, false)
+        initialiseOne($table, { isColumnSearch: false, passedOptions: passedOptions })
       } else {
-        initialiseOne($table, true)
+        initialiseOne($table, { isColumnSearch: true, passedOptions: passedOptions })
       }
     })
   }

@@ -44,7 +44,9 @@
       </table>
     </div>
     <script>
-      trkDatatables(window, $).initialise()
+      let language = { "info": "Приказ _START_ до _END_ од укупно _TOTAL_ записа" }
+      <!-- trkDatatables(window, $).initialise() -->
+      trkDatatables(window, $).initialise({ language: language })
     </script>
   </body>
 </html>
