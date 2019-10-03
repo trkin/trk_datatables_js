@@ -20,9 +20,6 @@ module.exports = {
         use: 'babel-loader',
       },
       {
-        parser: { amd: false },
-      },
-      {
         test: /\.(scss|sass|css)$/i,
         use: [
           // Creates `style` nodes from JS strings

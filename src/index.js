@@ -4,7 +4,13 @@
 // trkDatatables.initialise()
 (function( factory ) {
   "use strict";
-  if ( typeof exports === 'object' ) {
+  if ( typeof define === 'function' && define.amd ) {
+    // AMD
+    define( ['jquery'], function ( $ ) {
+      return factory( $, window, document );
+    } );
+  }
+  else if ( typeof exports === 'object' ) {
     // CommonJS
     module.exports = function (root, $) {
       if ( ! root ) {
@@ -30,8 +36,11 @@
   "use strict";
 
   // TODO: maybe we should move this require to iife
-  require('datatables.net')(window, $)
-  require('datatables.net-bs4')(window, $)
+  // https://github.com/webpack-contrib/imports-loader
+  // require("imports-loader?$=jquery!./example.js");
+  // require('datatables.net?')(window, $)
+  require('imports-loader?define=>false,this=>window!datatables.net')(window, $)
+  require('imports-loader?define=>false,this=>window!datatables.net-bs4')(window, $)
   require('datatables.net-bs4/css/dataTables.bootstrap4.css')
   require('./main.sass')
   require('../fontello/css/fontello.css')
