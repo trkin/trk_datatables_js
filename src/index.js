@@ -1,6 +1,9 @@
-// We need IIFE since we add datatables plugin to existing jQuery object which
-// can be done for example with:
+// For CommonJS you can use:
 // const trkDatatables = require('trk_datatables')(window, $)
+// For AMD you can use:
+// const trkDatatables = require('trk_datatables')
+//
+// Main function is:
 // trkDatatables.initialise()
 (function( factory ) {
   "use strict";
@@ -34,7 +37,15 @@
   }
 }(function( $, window, document, undefined ) { // eslint-disable-line
   "use strict";
-
+  // Sometime when I use: yarn link trk_datatables, than it will load another
+  // jquery dependency and Invalidauthenticitytoken is fired. To fix this, you can:
+  // $.ajaxPrefilter(function(options, originalOptions, xhr) {
+  //   if (!options.crossDomain) {
+  //     let token = $('meta[name="csrf-token"]').attr('content');
+  //     if (token) xhr.setRequestHeader('X-CSRF-Token', token);
+  //   }
+  // });
+  //
   // TODO: maybe we should move this require to iife
   // https://github.com/webpack-contrib/imports-loader
   // require("imports-loader?$=jquery!./example.js");
@@ -67,6 +78,8 @@
     // here we actually initialise Datatable
     let datatable = $table.DataTable(options)
     if (isColumnSearch) addEventListeners(datatable, options)
+    // **adjust** fix https://datatables.net/forums/discussion/43912
+    setTimeout(function() { datatable.columns.adjust() }, 0)
     addIconGlobalSearch($table, isColumnSearch, passedOptions)
   }
 
@@ -76,9 +89,11 @@
     let pageLength = $table.data('datatablePageLength') || 10
     let options = {
       // scrollY: "55vh", do not use Y scroll and show all items on a page
-      scrollX: true,
+      scrollX: true, // this will introduce some misallignment between header and columns
+      autoWidth: false, // with this option, body is full with but header stays original
+      // so we need to use fix for **adjust** (note that if bootstrap styles is
+      // loaded using spockets, header has 100% width)
       scrollCollapse: true,
-      autoWidth: false,
       dom: dom,
       order: order,
       pageLength: pageLength,

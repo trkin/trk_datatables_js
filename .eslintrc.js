@@ -3,6 +3,7 @@ module.exports = {
       "browser": true,
       "commonjs": true,
       "es6": true,
+      "amd": true,
       "jquery": true
     },
     "extends": "eslint:recommended",

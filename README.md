@@ -1,16 +1,29 @@
 # Trk Datatables
 
 This is complete package that depends on [datatables](https://datatables.net)
-and works with [trk_datatables gem](https://datatables.net)
+and works with [trk_datatables gem](https://github.com/trkin/trk_datatables)
 
-## Installation with webpack
+## Installation on Ruby on Rails with webpack
+
+Install packages
 
 ```
-yarn add trk_datatables
+yarn add trk_datatables bootstrap jquery popper.js
 ```
 
-Add to your page load or turbolinks load if you are using Rails and webpacker
+Include them in application pack
+```
+// app/javascript/packs/application.js
 
+// node_modules
+import 'bootstrap'
+
+// our stuff
+import 'stylesheet/application'
+import 'turbolinks.load'
+```
+
+Add to your turbolinks load
 ```
 // app/javascripts/turbolinks.load.js
 const trkDatatables = require('trk_datatables')
@@ -19,6 +32,13 @@ document.addEventListener('turbolinks:load', () => {
   // this will initialise all data-datatables elements
   trkDatatables.initialise()
 })
+```
+
+Load bootstrap styles
+```
+// app/javascript/stylesheet/application.css
+/* here we include other packages so postcss-import plugin will load css file from style attribute from package.json */
+@import 'bootstrap'
 ```
 
 Also you need to include styles from js
@@ -99,7 +119,7 @@ gnome-open fontello/demo.html
 
 ## Deploy
 
-Release new version by updating `version` in package.json and
+Release new version by updating `version` in package.json and push
 ```
 npm publish
 ```
