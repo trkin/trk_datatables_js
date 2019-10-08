@@ -45,6 +45,8 @@
   //     if (token) xhr.setRequestHeader('X-CSRF-Token', token);
   //   }
   // });
+  // On rails side no need to use ProvidePlugin for jquery since we pass it
+  // using iif for all our dependencies
   //
   // TODO: maybe we should move this require to iife
   // https://github.com/webpack-contrib/imports-loader
@@ -56,7 +58,7 @@
   require('./main.sass')
   require('../fontello/css/fontello.css')
 
-  const addColumnSearchInputs = require('./addColumnSearchInputs')(window, $)
+  const addColumnSearchInputs = require('./addColumnSearchInputs')
   const addEventListeners = require('./addEventListeners')
 
   const initialise = (passedOptions = {}) => {

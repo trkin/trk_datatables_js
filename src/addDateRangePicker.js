@@ -1,6 +1,12 @@
 (function( factory ) {
   "use strict";
-  if ( typeof exports === 'object' ) {
+  if ( typeof define === 'function' && define.amd ) {
+    // AMD
+    define( ['jquery'], function ( $ ) {
+      return factory( $, window, document );
+    } );
+  }
+  else if ( typeof exports === 'object' ) {
     // CommonJS
     module.exports = function (root, $) {
       if ( ! root ) {

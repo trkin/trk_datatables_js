@@ -1,6 +1,12 @@
 (function( factory ) {
   "use strict";
-  if ( typeof exports === 'object' ) {
+  if ( typeof define === 'function' && define.amd ) {
+    // AMD
+    define( ['jquery'], function ( $ ) {
+      return factory( $, window, document );
+    } );
+  }
+  else if ( typeof exports === 'object' ) {
     // CommonJS
     module.exports = function (root, $) {
       if ( ! root ) {
@@ -25,7 +31,7 @@
 }(function( $, window, document, undefined ) { // eslint-disable-line
   "use strict";
 
-  const addDateRangePicker = require('./addDateRangePicker')(window, $)
+  const addDateRangePicker = require('./addDateRangePicker')
   const addColumnSearchInputs = ($table) => {
     $('thead th[data-searchable!="false"]', $table).each(function() {
       let $th = $(this)
