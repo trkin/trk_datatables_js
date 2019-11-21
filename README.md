@@ -48,7 +48,24 @@ Also you need to include styles from js
     <%= stylesheet_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
 ```
 
-## Instalattion with script tag
+Somehow it needs provided jquery plugin even it does not load another instance
+of jquery (note that when you use `yarn link trk_datatables` it loads two
+jqueries so do not assume that `yarn link` is the same as node_modules).
+
+```
+config/webpack/environment.js
+const { environment } = require('@rails/webpacker')
+const webpack = require('webpack');
+environment.plugins.append('Provide', new webpack.ProvidePlugin({
+  $: 'jquery',
+  jQuery: 'jquery',
+  Popper: ['popper.js', 'default']
+}));
+
+module.exports = environment
+```
+
+## Installation with script tag
 
 Look for example `test/support/server_side.html` and run `yarn build` to
 generate `dist/index.js`.
