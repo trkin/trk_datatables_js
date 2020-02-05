@@ -25,7 +25,7 @@ import 'turbolinks.load'
 
 Add to your turbolinks load
 ```
-// app/javascripts/turbolinks.load.js
+// app/javascript/turbolinks.load.js
 const trkDatatables = require('trk_datatables')
 
 document.addEventListener('turbolinks:load', () => {
@@ -113,6 +113,10 @@ yarn link trk_datatables
 yarn unlink trk_datatables
 yarn add trk_datatables
 ```
+
+Also to debug on Rails app, you can put `debugger` in
+`node_modules/trk_datatables/src/index.js` and change (simply add new line)
+`app/javascript/packs/application.js` to triger webpack rebuild.
 
 For icons we used http://fontello.com/ `npm install fontello-cli -g` and open a
 page:

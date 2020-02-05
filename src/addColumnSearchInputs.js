@@ -68,7 +68,7 @@
     if (text.length == 0) return
 
     let klass = ''
-    if (text == 'ID') {
+    if (text.toUpperCase() == 'ID') {
       klass = 'trk-column-input__small'
     }
     $th.html(`<input class='trk-column-input ${klass}' type='text' placeholder='${text}' />`)

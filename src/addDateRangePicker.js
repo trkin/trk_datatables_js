@@ -38,14 +38,15 @@
     // http://www.daterangepicker.com/#options
     let format = 'DD-MMM-YYYY'
     let timePicker = false
-    if ($input.data("dateRange") == "datetime") {
-      format = 'DD-MMM-YYYY h:mm A'
+    if ($input.closest('th').data("datatableRange") == "datetime") {
+      format = 'YYYY-MM-DD hh:mm:ss' // this is default Rails Time.now.to_s (no tz)
       timePicker = true
     }
     let ranges = []
     let showCustomRangeLabel = false
-    if ($input.data("predefinedRanges")) {
-      ranges = $input.data("predefinedRanges")
+
+    if ($input.closest('th').data("datatablePredefinedRanges")) {
+      ranges = $input.closest('th').data("datatablePredefinedRanges")
       showCustomRangeLabel = true
     }
     $input.daterangepicker({
@@ -55,6 +56,7 @@
         format: format,
       },
       ranges: ranges,
+      alwaysShowCalendars: true, // to always show calendar even ranges are visible and user click on Today
       showCustomRangeLabel: showCustomRangeLabel,
       opens: 'left',
       autoUpdateInput: false, // we need to disable since it will use todays value,
