@@ -1,52 +1,20 @@
 # Trk Datatables
 
-This is complete package that depends on [datatables](https://datatables.net)
+This is javascript package that depends on [datatables](https://datatables.net)
 and works with [trk_datatables gem](https://github.com/trkin/trk_datatables)
+
+Here is example demo Rails application [https://github.com/trkin/trk_datatables_demo ](https://github.com/trkin/trk_datatables_demo)
+
+This package is using following npm packages:
+
+* datarangepicker https://github.com/dangrossman/daterangepicker
+* multiple-select https://github.com/wenzhixin/multiple-select
+* tristate https://github.com/vanderlee/tristate
 
 ## Installation on Ruby on Rails with webpack
 
-Install packages
-
-```
-yarn add trk_datatables bootstrap jquery popper.js
-```
-
-Include them in application pack
-```
-// app/javascript/packs/application.js
-
-// node_modules
-import 'bootstrap'
-
-// our stuff
-import 'stylesheet/application'
-import 'turbolinks.load'
-```
-
-Add to your turbolinks load
-```
-// app/javascript/turbolinks.load.js
-const trkDatatables = require('trk_datatables')
-
-document.addEventListener('turbolinks:load', () => {
-  // this will initialise all data-datatables elements
-  trkDatatables.initialise()
-})
-```
-
-Load bootstrap styles
-```
-// app/javascript/stylesheet/application.css
-/* here we include other packages so postcss-import plugin will load css file from style attribute from package.json */
-@import 'bootstrap'
-```
-
-Also you need to include styles from js
-
-```
-// app/views/layouts/application.html.erb
-    <%= stylesheet_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-```
+Find on
+[https://github.com/trkin/trk_datatables#installation ](https://github.com/trkin/trk_datatables#installation)
 
 Somehow it needs provided jquery plugin even it does not load another instance
 of jquery (note that when you use `yarn link trk_datatables` it loads two
@@ -99,24 +67,30 @@ gnome-open http://localhost:8081/dist/client_side.html
 gnome-open http://localhost:8081/dist/server_side.html
 ```
 
-To test on a project localy
+To test on a project locally
 ```
-# in package folder
+# in this folder (trk_datatables package folder)
 yarn link
 
-# in usage folder
-# eventual remove from package and node_modules
+# to see links
+ls -la ~/.config/yarn/link
+
+# in usage folder (rails folder)
+# eventually remove from package and node_modules
 yarn remove trk_datatables
 yarn link trk_datatables
+# this will create link node_modules/trk_datatables ->
+# ../../../.config/yarn/link/trk_datatables which points to
+# ~/javascript/trk_datatables
 
 # when you are done, you should use npm version, not local
 yarn unlink trk_datatables
 yarn add trk_datatables
 ```
 
-Also to debug on Rails app, you can put `debugger` in
-`node_modules/trk_datatables/src/index.js` and change (simply add new line)
-`app/javascript/packs/application.js` to triger webpack rebuild.
+Also to debug on Rails app, you can put `debugger` here in `src/index.js` and
+change (simply add new line) `app/javascript/packs/application.js` to triger
+webpack rebuild.
 
 For icons we used http://fontello.com/ `npm install fontello-cli -g` and open a
 page:

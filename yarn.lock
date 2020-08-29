@@ -3705,6 +3705,11 @@ jquery@>=1.10, jquery@>=1.7:
   resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.4.1.tgz#714f1f8d9dde4bdfa55764ba37ef214630d80ef2"
   integrity sha512-36+AdBzCL+y6qjw5Tx7HgzeGCzC81MDDgaUP8ld2zhx58HdqXGoBd+tHdrBMiyjGQs0Hxs/MLZTu/eHNJJuWPw==
 
+jquery@>=1.6.2:
+  version "3.5.1"
+  resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.5.1.tgz#d7b4d08e1bfdb86ad2f1a3d039ea17304717abb5"
+  integrity sha512-XwIBPqcMn57FxfT+Go5pzySnm4KWkT1Tv7gjrpT1srtf8Weynl6R273VJ5GjkRb51IzMp5nbaPjJXMWeju2MKg==
+
 js-base64@^2.1.8:
   version "2.5.1"
   resolved "https://registry.yarnpkg.com/js-base64/-/js-base64-2.5.1.tgz#1efa39ef2c5f7980bb1784ade4a8af2de3291121"
@@ -4265,6 +4270,11 @@ multicast-dns@^6.0.1:
   dependencies:
     dns-packet "^1.3.1"
     thunky "^1.0.2"
+
+multiple-select@^1.5.2:
+  version "1.5.2"
+  resolved "https://registry.yarnpkg.com/multiple-select/-/multiple-select-1.5.2.tgz#a7290785fc10fa4b9f26d2a92937effc63648bc8"
+  integrity sha512-sTNNRrjnTtB1b1+HTKcjQ/mjWY7Gvigo9F3C/3oTQCTFEpYzwaRYFPRAOu2SogfA1hEfyJTXjyS1VAbanJMsmA==
 
 mute-stream@0.0.7:
   version "0.0.7"
@@ -6302,6 +6312,13 @@ trim-right@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/trim-right/-/trim-right-1.0.1.tgz#cb2e1203067e0c8de1f614094b9fe45704ea6003"
   integrity sha1-yy4SAwZ+DI3h9hQJS5/kVwTqYAM=
+
+tristate@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/tristate/-/tristate-1.2.0.tgz#7cbd15039d68c746331c87fd69fe19f943d93e88"
+  integrity sha1-fL0VA51ox0YzHIf9af4Z+UPZPog=
+  dependencies:
+    jquery ">=1.6.2"
 
 "true-case-path@^1.0.2":
   version "1.0.3"

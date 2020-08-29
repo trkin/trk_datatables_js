@@ -1,6 +1,6 @@
 {
   "name": "trk_datatables",
-  "version": "1.0.10",
+  "version": "1.0.14",
   "description": "Javascript package that works nicely with trk_datatables gem",
   "_main_comment": "src/index.js for webpacker",
   "main": "src/index.js",
@@ -48,6 +48,8 @@
     "datatables.net": "^1.10.19",
     "datatables.net-bs4": "^1.10.19",
     "daterangepicker": "^3.0.5",
-    "imports-loader": "^0.8.0"
+    "imports-loader": "^0.8.0",
+    "multiple-select": "^1.5.2",
+    "tristate": "^1.2.0"
   }
 }

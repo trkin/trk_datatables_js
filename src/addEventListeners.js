@@ -49,12 +49,23 @@
               // this.value.indexOf(' - ') != -1 # does not cover empty search
               // addRangeSearch(column, this.value)
               datatable.draw()
-              console.log("input keyup change range search #{this.value}")
+              console.log(`input keyup change range search ${this.value}`)
             } else {
               column.search(this.value).draw()
-              console.log("input keyup change search #{this.value}")
+              console.log(`input keyup change search ${this.value}`)
             }
           }
+        })
+      })
+
+      $('input[type="checkbox"]', column.header()).each(function() {
+        column.search($(this).val())
+        if (!ajaxUrl && typeof $(column.header()).data().datatableSearchValue !== 'undefined') {
+          datatable.draw()
+        }
+        return $(this).on('change', function() {
+          column.search($(this).val()).draw()
+          return console.log("input checkbox change search " + ($(this).val()))
         })
       })
 
