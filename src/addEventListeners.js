@@ -34,7 +34,7 @@
     let ajaxUrl = datatable.ajax.url()
     datatable.columns().every(function() {
       let column = this
-      $('input[type="text"]', column.header()).each(function() {
+      $('input[trk-datatables-input]', column.header()).each(function() {
         // we need to add current value to search
         column.search(this.value)
         // we need to apply search if there is value and not serverside
@@ -58,7 +58,7 @@
         })
       })
 
-      $('input[type="checkbox"]', column.header()).each(function() {
+      $('input[trk-datatables-checkbox]', column.header()).each(function() {
         column.search($(this).val())
         if (!ajaxUrl && typeof $(column.header()).data().datatableSearchValue !== 'undefined') {
           datatable.draw()
@@ -69,7 +69,7 @@
         })
       })
 
-      $('select', column.header()).each(function() {
+      $('select[trk-datatables-select]', column.header()).each(function() {
         // add current value, multi select returns array, so we join by |
         let multiple_value = ($(this).val() || []).join('|')
         column.search(multiple_value, true, false)
@@ -79,7 +79,7 @@
           multiple_value = ($(this).val() || []).join('|')
           if (column.search() != multiple_value) {
             column.search(multiple_value, true, false).draw()
-            console.log("select change search true #{multiple_value}")
+            console.log(`select change search true ${multiple_value}`)
           }
         })
       })

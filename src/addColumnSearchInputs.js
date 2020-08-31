@@ -33,6 +33,8 @@
 
   const addDateRangePicker = require('./addDateRangePicker')
   require('tristate/jquery.tristate.js')
+  require('multiple-select')
+  require('multiple-select/src/multiple-select.scss')
 
   const addColumnSearchInputs = ($table) => {
     $('thead th[data-searchable!="false"]', $table).each(function() {
@@ -55,7 +57,16 @@
     if (text.length > 0) {
       $th.data("original-text", text)
     }
-    $th.html($th.data().datatableMultiselect)
+    let $select = $('<select>').attr('multiple', 'multiple').attr('trk-datatables-select', true)
+    for(let { key, value, selected } of $th.data().datatableMultiselect) {
+
+      let $option = $('<option/>').attr('value', value).text(key)
+      if (selected) {
+        $option.attr('selected', 'selected')
+      }
+      $select.append($option)
+    }
+    $th.html($select)
     $('select', $th).multipleSelect({
       container: 'body',
       width: '110px',
@@ -95,7 +106,7 @@
     $th.html(`
       <label for='${id}' class='trk-column-checkbox'>
         ${text}
-        <input id='${id}' type='checkbox' ${initialValue} />
+        <input id='${id}' type='checkbox' ${initialValue} trk-datatables-checkbox />
         <span id='${id}-output'></span>
       </label>
     `)
@@ -119,7 +130,7 @@
     if (text.toUpperCase() == 'ID') {
       klass = 'trk-column-input__small'
     }
-    $th.html(`<input class='trk-column-input ${klass}' type='text' placeholder='${text}' />`)
+    $th.html(`<input class='trk-column-input ${klass}' type='text' placeholder='${text}' trk-datatables-input />`)
     $th.data("original-text", text)
     $('input', $th).on('click', (e) => {
       e.stopPropagation() // prevent reordering since it is on thead
