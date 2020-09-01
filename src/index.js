@@ -80,8 +80,17 @@
     } else {
       addLabels($table)
     }
+
     // here we actually initialise Datatable
     let datatable = $table.DataTable(options)
+
+    if ($table.data('datatableAjaxUrl')) {
+      // this is serverside table so we can saveLength and saveOrder on server
+    } else {
+      // for client side we will use another ajax to save preferences
+      saveLength($table)
+      saveOrder($table)
+    }
     if (isColumnSearch) addEventListeners(datatable, options)
     // **adjust** fix https://datatables.net/forums/discussion/43912
     setTimeout(function() { datatable.columns.adjust() }, 0)
@@ -140,8 +149,8 @@
       ...optionsColumnDefs,
       ...passedOptions,
       language: {
-        processing: `<i class="demo-icon icon-spinner fa-spin"
-            style="font-size:24px"></i> Processing... spiner`,
+        processing: `<i class="demo-icon trk-icon-spinner trk-spin"
+            style="font-size:24px"></i> Processing...`,
         ...passedOptions.language,
         },
     }
@@ -164,6 +173,36 @@
       } else {
         initialiseOne($table, { isColumnSearch: true, passedOptions: passedOptions })
       }
+    })
+  }
+
+  function savePreference(data) {
+    $.ajax({
+      url: '/my-profile/preferences',
+      method: 'POST',
+      data: { preference_name: "datatable_preference", preference_value: data },
+      dataType: "json",
+      success: function(data, status) {
+        console.log(`data-user-preferences ${status}`)
+      }
+    })
+  }
+
+  function saveLength(table) {
+    table.on('length.dt', function( e, settings, len ) {
+      let name = $(this).data().datatableName
+      let data = { [name]: { page_length: parseInt(len) } }
+      savePreference(data)
+    })
+  }
+
+  function saveOrder(table) {
+    table.on('order.dt', function( e, settings, order ) {
+      let name = $(this).data().datatableName
+      let direction = order[0].dir
+      let column_index = order[0].col
+      let data = { [name]: { direction: direction, column_index: column_index } }
+      savePreference(data)
     })
   }
 
