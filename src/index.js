@@ -153,6 +153,27 @@
             style="font-size:24px"></i> Processing...`,
         ...passedOptions.language,
         },
+      // https://datatables.net/forums/discussion/comment/159119/#Comment_159119
+      initComplete: function() {
+        var api = this.api();
+        $('.dataTables_filter input')
+          .unbind() // Unbind previous default bindings
+          .bind('input', (delay(function () { // Bind our desired behavior
+            api.search($(this).val()).draw();
+            return;
+          }, 1000))); // Set delay in milliseconds
+
+        function delay(callback, ms) {
+          var timer = 0;
+          return function () {
+            var context = this, args = arguments;
+            clearTimeout(timer);
+            timer = setTimeout(function () {
+              callback.apply(context, args);
+            }, ms || 0);
+          };
+        }
+      },
     }
   }
 

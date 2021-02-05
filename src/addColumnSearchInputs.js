@@ -67,6 +67,7 @@
       $select.append($option)
     }
     $th.html($select)
+    // http://multiple-select.wenzhixin.net.cn/examples#basic.html
     $('select', $th).multipleSelect({
       container: 'body',
       width: '110px',

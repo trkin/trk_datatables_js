@@ -76,8 +76,7 @@ yarn link
 ls -la ~/.config/yarn/link
 
 # in usage folder (rails folder)
-# eventually remove from package and node_modules
-yarn remove trk_datatables
+rm -rf node_modules/trk_datatables
 yarn link trk_datatables
 # this will create link node_modules/trk_datatables ->
 # ../../../.config/yarn/link/trk_datatables which points to
