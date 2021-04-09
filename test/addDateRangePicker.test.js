@@ -6,5 +6,5 @@ test('addDateRangePicker', () => {
     <input id='my-input' data-range='true'>
   `
   let $input = $('my-input')
-  addDateRangePicker($input)
+  addDateRangePicker($input, {})
 })

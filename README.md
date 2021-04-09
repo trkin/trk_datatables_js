@@ -48,6 +48,13 @@ generate `dist/index.js`.
     </script>
 ```
 
+# Options
+
+You can search for `passedOptions` to see which parameters you can change:
+
+* language
+* dateRangePickerDateFormat and dateRangePickerDateTimeFormat
+
 ## Development
 
 To run test you can

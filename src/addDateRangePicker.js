@@ -34,12 +34,12 @@
   require('daterangepicker')
   require('daterangepicker/daterangepicker.css')
 
-  const addDateRangePicker = function($input) {
+  const addDateRangePicker = function($input, passedOptions) {
     // http://www.daterangepicker.com/#options
-    let format = 'DD-MMM-YYYY'
+    let format = passedOptions.dateRangePickerDateFormat || 'DD-MMM-YYYY'
     let timePicker = false
     if ($input.closest('th').data("datatableRange") == "datetime") {
-      format = 'YYYY-MM-DD hh:mm:ss' // this is default Rails Time.now.to_s (no tz)
+      format = passedOptions.dateRangePickerDateTimeFormat || 'YYYY-MM-DD hh:mm:ss' // this is default Rails Time.now.to_s (no tz)
       timePicker = true
     }
     let ranges = []

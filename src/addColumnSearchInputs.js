@@ -36,7 +36,7 @@
   require('multiple-select')
   require('multiple-select/src/multiple-select.scss')
 
-  const addColumnSearchInputs = ($table) => {
+  const addColumnSearchInputs = ($table, passedOptions) => {
     $('thead th[data-searchable!="false"]', $table).each(function() {
       let $th = $(this)
       if ($th.data('datatableMultiselect')) {
@@ -46,7 +46,7 @@
       } else {
         addInputBasedOnText($th)
         if ($th.data('datatableRange')) {
-          addDateRange($th)
+          addDateRange($th, passedOptions)
         }
       }
     })
@@ -142,11 +142,11 @@
   }
 
 
-  function addDateRange($th) {
+  function addDateRange($th, passedOptions) {
     let $input = $('input', $th)
     $input.data('dateRange', $(this).data('datatableRange'))
     $input.data('predefinedRanges', $(this).data('datatablePredefinedRanges'))
-    addDateRangePicker($input)
+    addDateRangePicker($input, passedOptions)
   }
   return addColumnSearchInputs
 }))

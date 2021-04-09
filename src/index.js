@@ -76,7 +76,7 @@
     let options = findOptions($table, passedOptions)
     if (isColumnSearch === undefined) isColumnSearch = $('[data-datatable-search-value][data-datatable-search-value!=""]', $table).length
     if (isColumnSearch) {
-      addColumnSearchInputs($table)
+      addColumnSearchInputs($table, passedOptions)
     } else {
       addLabels($table)
     }
