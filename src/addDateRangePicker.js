@@ -52,6 +52,7 @@
     $input.daterangepicker({
       autoApply: true,
       timePicker: timePicker,
+      timePicker24Hour: true,
       locale: {
         format: format,
       },
