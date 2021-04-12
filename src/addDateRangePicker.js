@@ -53,6 +53,9 @@
       autoApply: true,
       timePicker: timePicker,
       timePicker24Hour: true,
+      timePickerSeconds: true,
+      timePickerIncrement: 5,
+      showDropdowns: true,
       locale: {
         format: format,
       },
