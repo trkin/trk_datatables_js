@@ -157,8 +157,9 @@
       initComplete: function() {
         var api = this.api();
         $('.dataTables_filter input')
-          .unbind() // Unbind previous default bindings
-          .bind('input', (delay(function () { // Bind our desired behavior
+          .off() // remove default search api call and append delayed
+          .on('input', (delay(function () { // Bind our desired behavior
+             console.log(`api ${$(this).val()}`)
             api.search($(this).val()).draw();
             return;
           }, 1000))); // Set delay in milliseconds
