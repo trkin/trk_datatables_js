@@ -37,7 +37,7 @@
     "file-loader": "^4.2.0",
     "jasmine-core": "^3.4.0",
     "jest": "^24.9.0",
-    "node-sass": "^4.12.0",
+    "node-sass": "^7.0.0",
     "sass-loader": "^8.0.0",
     "style-loader": "^1.0.0",
     "webpack": "^4.39.3",
