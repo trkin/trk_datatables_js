@@ -156,7 +156,7 @@
       // https://datatables.net/forums/discussion/comment/159119/#Comment_159119
       initComplete: function() {
         var api = this.api();
-        $('.dataTables_filter input')
+        $('.dataTables_filter input', $table)
           .off() // remove default search api call and append delayed
           .on('input', (delay(function () { // Bind our desired behavior
              console.log(`api ${$(this).val()}`)
