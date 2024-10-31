@@ -74,7 +74,20 @@ gnome-open http://localhost:8081/dist/client_side.html
 gnome-open http://localhost:8081/dist/server_side.html
 ```
 
-To test on a project locally
+To test on a project locally use `file:` protocol since `yarn link` gives error
+that
+```
+Module not found: Error: Can't resolve 'jquery' in ...
+```
+When you update the package, to trigger recompile you need to run on rails
+project
+```
+yarn upgrade trk_datatables
+# edit some js file to trigger webpack
+```
+
+Here is a link usage just for reference
+
 ```
 # in this folder (trk_datatables package folder)
 yarn link

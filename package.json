@@ -1,6 +1,6 @@
 {
   "name": "trk_datatables",
-  "version": "1.0.24",
+  "version": "1.0.27",
   "description": "Javascript package that works nicely with trk_datatables gem",
   "_main_comment": "src/index.js for webpacker",
   "main": "src/index.js",
@@ -34,10 +34,10 @@
     "babel-loader": "^8.0.6",
     "css-loader": "^3.2.0",
     "eslint": "^6.4.0",
-    "file-loader": "^4.2.0",
+    "file-loader": "^6.2.0",
     "jasmine-core": "^3.4.0",
     "jest": "^24.9.0",
-    "node-sass": "^4.12.0",
+    "node-sass": "^9.0.0",
     "sass-loader": "^8.0.0",
     "style-loader": "^1.0.0",
     "webpack": "^4.39.3",
@@ -48,7 +48,6 @@
     "datatables.net": "^1.10.19",
     "datatables.net-bs4": "^1.10.19",
     "daterangepicker": "^3.1",
-    "imports-loader": "^0.8.0",
     "multiple-select": "^1.5.2",
     "tristate": "^1.2.0"
   }
