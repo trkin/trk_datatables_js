@@ -1,6 +1,6 @@
 {
   "name": "trk_datatables",
-  "version": "1.0.27",
+  "version": "1.1.0",
   "description": "Javascript package that works nicely with trk_datatables gem",
   "_main_comment": "src/index.js for webpacker",
   "main": "src/index.js",

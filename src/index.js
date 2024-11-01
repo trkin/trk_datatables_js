@@ -1,15 +1,14 @@
-// require('datatables.net-bs4/css/dataTables.bootstrap4.css')
 import $ from 'jquery';
 console.log("trk load $.message", $.message)
 
 import DataTable from 'datatables.net';
 import "datatables.net-buttons-bs4";
 
-require('./main.sass')
-require('../fontello/css/fontello.css')
+import './main.sass'
+import '../fontello/css/fontello.css'
 
-const addColumnSearchInputs = require('./addColumnSearchInputs')
-const addEventListeners = require('./addEventListeners')
+import addColumnSearchInputs from "./addColumnSearchInputs"
+import addEventListeners from "./addEventListeners"
 
 export function initialise(passedOptions = {}) {
   console.log("trk initialise $.message", $.message)
