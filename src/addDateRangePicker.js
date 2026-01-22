@@ -54,7 +54,7 @@
       timePicker: timePicker,
       timePicker24Hour: true,
       timePickerSeconds: true,
-      timePickerIncrement: 5,
+      timePickerIncrement: 1,
       showDropdowns: true,
       locale: {
         format: format,
